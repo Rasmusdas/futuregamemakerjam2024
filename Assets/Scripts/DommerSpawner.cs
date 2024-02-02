@@ -17,7 +17,7 @@ public class Dommer_Spawner : MonoBehaviour
 
     }
 
-
+    public int _BallCount = 0;
     int _CooldownTime = 0;
     
     public int CooldownTimer = 30;
@@ -32,6 +32,7 @@ public class Dommer_Spawner : MonoBehaviour
             Instantiate(ball);
 
             _CooldownTime = 0;
+            _BallCount++;
         }
         else
         {

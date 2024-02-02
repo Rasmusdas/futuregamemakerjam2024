@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public bool held;
 
     private Rigidbody _rb;
+    public GameObject owner;
 
     void Start()
     {
@@ -26,8 +27,9 @@ public class Ball : MonoBehaviour
     public bool HeldOrFired => fired || held;
 
 
-    public void Shoot(Vector2 dir, float power)
+    public void Shoot(GameObject shooter, Vector2 dir, float power)
     {
+        owner = shooter;
         fired = true;
         held = false;
         _rb.constraints = RigidbodyConstraints.None;

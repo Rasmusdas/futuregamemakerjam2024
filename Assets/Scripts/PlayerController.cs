@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _controller;
     public Ball heldBall;
     public float blinkTimer = 0.3f;
+    public Transform ballSpot;
 
     public float ballOffset = 1.45f;
 
@@ -24,17 +25,20 @@ public class PlayerController : MonoBehaviour
     public int health = 3;
 
     public bool invulnerable;
-    private MeshRenderer _mr;
+    private SkinnedMeshRenderer _mr;
     private Vector3 _lookAtVector;
     private Vector3 _startPosition;
+    private PlayerAnimations _animator;
 
 
     void Start()
     {
-        _mr = GetComponent<MeshRenderer>();
+        _animator = GetComponent<PlayerAnimations>();
+        _mr = GetComponentInChildren<SkinnedMeshRenderer>();
         _controller = GetComponent<CharacterController>();
         _lookAtVector = Vector2.up;
         _startPosition = PlayerSpawnManager.Instance.GetStartPosition();
+        StartCoroutine(Invulnerability());
     }
 
     void OnStart()
@@ -52,7 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         if (heldBall)
         {
-            heldBall.transform.position = transform.position + _lookAtVector*ballOffset;
+            heldBall.transform.position = ballSpot.position;
             heldBall.transform.parent = transform;
         }
         
@@ -61,6 +65,11 @@ public class PlayerController : MonoBehaviour
         if (movementVector.magnitude > 0)
         {
             _lookAtVector = new Vector3(movementVector.x, 0, movementVector.y);
+            _animator.Run();
+        }
+        else
+        {
+            _animator.Idle();
         }
         
         if (lookVector.magnitude > 0)
@@ -142,14 +151,13 @@ public class PlayerController : MonoBehaviour
                 heldBall.Shoot(gameObject,dir,1);
             }
             
-            
+            _animator.Kick();
             heldBall = null;
         }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject);
         if (!other.gameObject.TryGetComponent(out Ball ball)) return;
         if (heldBall != null) return;
         
@@ -161,6 +169,15 @@ public class PlayerController : MonoBehaviour
 
         if (ball.fired && !invulnerable && ball.owner != gameObject)
         {
+            HitPlayer();
+        }
+    }
+
+    public void HitPlayer()
+    {
+        if (!invulnerable)
+        {
+            Debug.Log($"Health: {health}");
             health -= 1;
             invulnerable = true;
             StartCoroutine(Invulnerability());

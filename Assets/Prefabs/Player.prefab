@@ -231,7 +231,7 @@ MonoBehaviour:
   lookVector: {x: 0, y: 0}
   speed: 9
   heldBall: {fileID: 0}
-  blinkTimer: 0.5
+  blinkTimer: 0.3
   ballOffset: 1.45
   degreesOfAimAssist: 0
   aimAssistDistanceLimit: 1000

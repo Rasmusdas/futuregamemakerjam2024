@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class Ball : MonoBehaviour
 
     public bool fired = false;
     public bool held;
+    public int bounces;
 
     protected Rigidbody _rb;
     public GameObject owner;
@@ -48,5 +50,18 @@ public class Ball : MonoBehaviour
     {
         held = true;
         _rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!other.gameObject.CompareTag("Wall")) return;
+        
+        bounces--;
+
+        if (bounces <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

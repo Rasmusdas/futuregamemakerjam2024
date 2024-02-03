@@ -34,6 +34,12 @@ public class Judge : MonoBehaviour
     
     private Ball _currBall;
 
+    public SoundManager sndMan;
+
+    public void StopGame()
+    {
+        sndMan.EndWhistle();
+    }
     private void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("BallSpawn");
@@ -52,7 +58,8 @@ public class Judge : MonoBehaviour
         if (!firstStart)
         {
             firstStart = true;
-            _anim.JudgeStart();
+            _timeSinceSpawn = -100;
+            StartCoroutine(StartGameSetup());
         }
 
         var players = PlayerSpawnManager.Instance.players;
@@ -76,6 +83,19 @@ public class Judge : MonoBehaviour
                 _anim.Throw();
             }
         }
+
+    }
+
+    private IEnumerator StartGameSetup()
+    {
+        sndMan.CountDown();
+        yield return new WaitForSeconds(sndMan.countDown.length/2);
+        _anim.JudgeStart();
+        yield return new WaitForSeconds(sndMan.countDown.length/2);
+        sndMan.StartWhistle();
+        yield return new WaitForSeconds(sndMan.startWhistle.length);
+        _timeSinceSpawn = 1;
+        sndMan.PlayMusic();
 
     }
 
@@ -155,7 +175,9 @@ public class Judge : MonoBehaviour
         if (!_currBall.held)
         {
             _currBall.Rb.constraints = RigidbodyConstraints.None;
+            SoundManager.instance.BallHitSound();
         }
+
 
     }
 }

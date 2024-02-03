@@ -10,22 +10,25 @@ public class Person : MonoBehaviour
     public int random;
     private PlayerAnimations _anim;
     public Vector3 orgPos;
+    public static float BaseCheerSpeed = 1;
+    public float addedSpeed;
+    private Animator _animator;
+
     void Start()
     {
         GetComponentInChildren<SkinnedMeshRenderer>().materials[1].color = colors[Random.Range(0, colors.Length)];
         _anim = GetComponent<PlayerAnimations>();
         random = Random.Range(0, 100000);
         orgPos = transform.position;
-
+        _animator = GetComponent<Animator>();
         _anim.Jubii();
-
-        GetComponent<Animator>().speed += Random.value / 5;
+        addedSpeed = Random.value / 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.position = orgPos + new Vector3(0, Mathf.Abs(Mathf.Sin(random + Time.time*5))/1.5f,0);
+        _animator.speed = addedSpeed + BaseCheerSpeed;
 
     }
 }

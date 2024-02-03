@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _startPosition;
     private PlayerAnimations _animator;
 
-    public TextMeshProUGUI ui;
+    public Image ui;
     public string nameOfColor;
 
 
@@ -52,9 +52,9 @@ public class PlayerController : MonoBehaviour
         _startPosition = PlayerSpawnManager.Instance.GetStartPosition();
     }
 
-    public void Assign(Color col, TextMeshProUGUI text,string colorName)
+    public void Assign(Color col, Image img,string colorName)
     {
-        ui = text;
+        ui = img;
         _mr = GetComponentInChildren<SkinnedMeshRenderer>();
         _mr.materials[1].color = col;
         nameOfColor = colorName;
@@ -183,6 +183,7 @@ public class PlayerController : MonoBehaviour
     {
         if (heldBall)
         {
+            SoundManager.instance.KickBall();
             heldBall.transform.parent = null;
 
             Vector3 dir = GetAssistedAim();
@@ -224,7 +225,8 @@ public class PlayerController : MonoBehaviour
         {
             health -= 1;
             Debug.Log($"Health: {health}");
-            ui.text = $"{health}/3 HP";
+            ui.fillAmount = health / 3f;
+            ui.transform.GetChild(0).GetComponent<Image>().fillAmount = health / 3f;
             invulnerable = true;
             
 

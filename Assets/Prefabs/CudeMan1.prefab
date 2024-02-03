@@ -363,15 +363,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f75242e5725665626924b61dcf5deaca, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f75242e5725665626924b61dcf5deaca, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f75242e5725665626924b61dcf5deaca, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f75242e5725665626924b61dcf5deaca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -672,9 +672,9 @@ MonoBehaviour:
   ballSpot: {fileID: 1203775923019606398}
   chargeIndicator: {fileID: 7546101838526305719}
   charging: 0
-  ballOffset: 1.45
-  degreesOfAimAssist: 15
-  aimAssistDistanceLimit: 15
+  ballOffset: 2
+  degreesOfAimAssist: 20
+  aimAssistDistanceLimit: 100
   invulnTimer: 1
   health: 3
   invulnerable: 0

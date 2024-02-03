@@ -27,4 +27,9 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetTrigger("Kick");
     }
+    
+    public void Throw()
+    {
+        anim.SetTrigger("Throw");
+    }
 }

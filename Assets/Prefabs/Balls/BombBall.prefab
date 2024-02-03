@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6067767117550032748}
   - component: {fileID: 6234377221524640799}
   - component: {fileID: 4060676618775260494}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4868,7 +4868,7 @@ GameObject:
   - component: {fileID: 893434575654997779}
   - component: {fileID: 7513455408877494203}
   - component: {fileID: 6182266372047044735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9787,7 +9787,7 @@ GameObject:
   - component: {fileID: -4186406256740119257}
   - component: {fileID: -833029446332433962}
   - component: {fileID: 6738567366428012422}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BombBall
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -9906,7 +9906,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!96 &-833029446332433962
@@ -10059,7 +10059,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   shootSpeed: 50
   blowUpTimer: 1
-  aoe: 7
+  aoe: 6
   debug: 0
   _blowUpParticleSystem: {fileID: 7513455408877494203}
   _fuseParticleSystem: {fileID: 6234377221524640799}

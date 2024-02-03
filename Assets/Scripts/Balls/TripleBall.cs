@@ -39,9 +39,9 @@ public class TripleBall : Ball
         Physics.IgnoreCollision(collider2, collider3);
         Physics.IgnoreCollision(collider1, collider3);
         
-        rotBall.GetComponent<Rigidbody>().velocity = _rb.velocity.magnitude * reverseRotatedVector;
-        revBall.GetComponent<Rigidbody>().velocity = _rb.velocity.magnitude * rotatedVector;
-        regBall.GetComponent<Rigidbody>().velocity = _rb.velocity;
+        rotBall.GetComponent<Rigidbody>().velocity = Rb.velocity.magnitude * reverseRotatedVector;
+        revBall.GetComponent<Rigidbody>().velocity = Rb.velocity.magnitude * rotatedVector;
+        regBall.GetComponent<Rigidbody>().velocity = Rb.velocity;
         
         rotBall.GetComponent<Ball>().owner = owner;
         revBall.GetComponent<Ball>().owner = owner;

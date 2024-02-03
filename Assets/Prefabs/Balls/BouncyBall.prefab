@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4186406256740119257}
   - component: {fileID: 2541870292312867192}
   - component: {fileID: 6919821523550936118}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BouncyBall
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!96 &2541870292312867192
@@ -281,6 +281,6 @@ MonoBehaviour:
   fired: 0
   held: 0
   bounces: 7
-  lifeTime: 2
+  lifeTime: 5
   owner: {fileID: 0}
   shootSpeed: 50

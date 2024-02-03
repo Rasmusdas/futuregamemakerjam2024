@@ -11,7 +11,19 @@ public class Ball : MonoBehaviour
     public int bounces;
     public float lifeTime = 2;
 
-    protected Rigidbody _rb;
+    private Rigidbody _rb;
+    public Rigidbody Rb
+    {
+        get
+        {
+            if (_rb)
+            {
+                return _rb;
+            }
+            _rb = GetComponent<Rigidbody>();
+            return _rb;
+        }
+    }
     public GameObject owner;
 
     public float shootSpeed = 50f;
@@ -25,7 +37,7 @@ public class Ball : MonoBehaviour
     {
         if (held)
         {
-            _rb.velocity = Vector3.zero;
+            Rb.velocity = Vector3.zero;
         }
 
         if (transform.position.y < -10)
@@ -42,8 +54,8 @@ public class Ball : MonoBehaviour
         owner = shooter;
         fired = true;
         held = false;
-        _rb.constraints = RigidbodyConstraints.None;
-        _rb.velocity = dir * chargeModifier * shootSpeed;
+        Rb.constraints = RigidbodyConstraints.None;
+        Rb.velocity = dir * chargeModifier * shootSpeed;
         
         Destroy(gameObject,lifeTime);
     }
@@ -52,7 +64,7 @@ public class Ball : MonoBehaviour
     public void Pickup()
     {
         held = true;
-        _rb.constraints = RigidbodyConstraints.FreezeAll;
+        Rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
 

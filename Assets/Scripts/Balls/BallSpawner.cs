@@ -10,21 +10,11 @@ using Random = UnityEngine.Random;
 public class BallSpawner : MonoBehaviour
 {
     public BallSpawnPoint[] spawnPoints;
-    public GameObject ball;
    
     void FixedUpdate()
     {
-
         SpawnBall();
-
-        
-
     }
-
-
-    int _CooldownTime = 0;
-    
-    public int CooldownTimer = 30;
 
     void SpawnBall()
     {
@@ -44,7 +34,7 @@ public class BallSpawnPoint
 {
     public Transform spawnPoint;
     public GameObject[] balls;
-    public Ball ball;
+    [HideInInspector] public Ball ball;
     
     public bool CanSpawnBall
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BombBall : Ball
 {
@@ -8,10 +9,14 @@ public class BombBall : Ball
     public float aoe;
     public bool debug = true;
 
-    [SerializeField]private ParticleSystem _particleSystem;
+    [SerializeField]private ParticleSystem _blowUpParticleSystem;
+    [SerializeField]private ParticleSystem _fuseParticleSystem;
+    
+    
     public override void Shoot(GameObject shooter, Vector3 dir, float chargeModifier)
     {
         StartCoroutine(BlowTimerUp());
+        _fuseParticleSystem.Play();
         base.Shoot(shooter, dir, chargeModifier);
     }
 
@@ -31,8 +36,8 @@ public class BombBall : Ball
             tempVec.y = 0.1f;
             gb.transform.localScale = tempVec;
         }
-        _particleSystem.transform.parent = null;
-        _particleSystem.Play();
+        _blowUpParticleSystem.transform.parent = null;
+        _blowUpParticleSystem.Play();
 
         var hits = Physics.SphereCastAll(transform.position, aoe / 2, Vector3.up, 0.02f);
 
@@ -43,7 +48,7 @@ public class BombBall : Ball
                 player.HitPlayer();
             }
         }
-        Destroy(_particleSystem,2);
+        Destroy(_blowUpParticleSystem,2);
         Destroy(gameObject);
     }
     

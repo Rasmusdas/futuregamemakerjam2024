@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        _controller.Move(new Vector3(movementVector.x,-9.82f*Time.deltaTime,movementVector.y) * (speed * Time.deltaTime));
+        _controller.Move(new Vector3(movementVector.x,-9.82f*Time.deltaTime,movementVector.y) * (speed * Time.deltaTime*(Mathf.Clamp(2-_currentCharge*2,0,1))));
 
         if (movementVector.magnitude > 0)
         {
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
 
             if (dir == -Vector3.one)
             {   
-                heldBall.Shoot(gameObject,_lookAtVector,_currentCharge);
+                heldBall.Shoot(gameObject,_lookAtVector,_currentCharge >= 0.99 ? 1.5f : _currentCharge);
             }
             else
             {

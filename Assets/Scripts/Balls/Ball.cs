@@ -72,7 +72,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") && held == false)
+        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") && held == false && fired == true)
         {
             soundManager.BallHitSound();
         }

@@ -16,6 +16,7 @@ public class PlayerSpawnManager : MonoBehaviour
     public string[] colorNames;
     public static PlayerSpawnManager Instance;
     public bool started = false;
+    public bool finished = false;
     public List<PlayerController> players;
     public Transform[] spawnPoints;
     public TextMeshProUGUI winnerText;
@@ -40,13 +41,24 @@ public class PlayerSpawnManager : MonoBehaviour
 
         if (playersWithHealth.Count == 1 && started)
         {
+            finished = true;
             winnerText.gameObject.SetActive(true);
             winnerText.text = playersWithHealth[0].nameOfColor + " has won!";
-            Time.timeScale = 0;
 
             if (Input.GetKey(KeyCode.R))
             {
-                Time.timeScale = 1;
+                SceneManager.LoadScene(0);
+            }
+        }
+
+        if (playersWithHealth.Count == 0 && started)
+        {
+            finished = true;
+            winnerText.gameObject.SetActive(true);
+            winnerText.text = "Tie!";
+
+            if (Input.GetKey(KeyCode.R))
+            {
                 SceneManager.LoadScene(0);
             }
         }

@@ -678,6 +678,8 @@ MonoBehaviour:
   invulnTimer: 1
   health: 3
   invulnerable: 0
+  ui: {fileID: 0}
+  nameOfColor: 
 --- !u!114 &1286324876981306948
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ public class Ball : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") && held == false && fired == true)
         {
-            soundManager.BallHitSound();
+            //soundManager.BallHitSound();
         }
 
         if (!other.gameObject.CompareTag("Wall")) return;

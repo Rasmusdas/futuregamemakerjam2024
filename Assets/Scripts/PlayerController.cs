@@ -67,6 +67,11 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
+        if (health <= 0)
+        {
+            return;
+        }
+        
         if (!PlayerSpawnManager.Instance.started)
         {
             transform.position = _startPosition;
@@ -160,6 +165,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue vec)
     {
+        if (health <= 0) return;
         Single pressVal = vec.Get<Single>();
         
         if (pressVal < 0.5 && charging)
@@ -214,13 +220,23 @@ public class PlayerController : MonoBehaviour
 
     public void HitPlayer()
     {
-        if (!invulnerable)
+        if (!invulnerable && !PlayerSpawnManager.Instance.finished)
         {
             health -= 1;
             Debug.Log($"Health: {health}");
             ui.text = $"{health}/3 HP";
             invulnerable = true;
-            StartCoroutine(Invulnerability());
+            
+
+            if (health == 0)
+            {
+                _animator.Die();
+            }
+
+            if (health > 0)
+            {
+                StartCoroutine(Invulnerability());
+            }
         }
     }
 

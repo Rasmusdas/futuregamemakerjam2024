@@ -91,7 +91,7 @@ public class Judge : MonoBehaviour
         while (t < 6*Mathf.PI)
         {
             float tSin = Mathf.Sin(t)/4;
-            ch.transform.localScale = new Vector3(tSin+0.75f, tSin+0.75f, 1);
+            ch.transform.localScale = new Vector3(tSin+1.25f, tSin+1.25f, 1);
             yield return new WaitForEndOfFrame();
             t+=Time.deltaTime*2*Mathf.PI;
         }

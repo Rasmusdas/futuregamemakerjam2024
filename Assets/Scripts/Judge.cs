@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -28,6 +29,9 @@ public class Judge : MonoBehaviour
     public GameObject crossHair;
     public Transform canvas;
 
+    public bool firstStart;
+    public bool firstEnd;
+    
     private Ball _currBall;
 
     private void Start()
@@ -35,21 +39,44 @@ public class Judge : MonoBehaviour
         spawnPoints = GameObject.FindGameObjectsWithTag("BallSpawn");
         _prevTarget = transform.position+transform.forward;
         _anim = GetComponent<PlayerAnimations>();
+        _timeSinceSpawn = 0;
     }
 
     // Start is called before the first frame update
     // Update is called once per frame
     void Update()
     {
+        
         if (!PlayerSpawnManager.Instance.started) return;
         
-        _timeSinceSpawn += Time.deltaTime;
-
-        if (_timeSinceSpawn >= spawnTimer)
+        if (!firstStart)
         {
-            _timeSinceSpawn = 0;
-            _anim.Throw();
+            firstStart = true;
+            _anim.JudgeStart();
         }
+
+        var players = PlayerSpawnManager.Instance.players;
+        var playersWithHealth = players.FindAll(x => x.health > 0);
+
+        if (playersWithHealth.Count <= 1 && PlayerSpawnManager.Instance.started)
+        {
+            if (!firstEnd)
+            {
+                _anim.JudgeStop();
+                firstEnd = true;
+            }
+        }
+        else
+        {
+            _timeSinceSpawn += Time.deltaTime;
+
+            if (_timeSinceSpawn >= spawnTimer)
+            {
+                _timeSinceSpawn = 0;
+                _anim.Throw();
+            }
+        }
+
     }
 
     void ReleaseBall()

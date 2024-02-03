@@ -208,13 +208,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196072080}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.4999996, y: -0, z: -0, w: 0.8660257}
+  m_LocalPosition: {x: 0, y: 34.434853, z: -26.261395}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!1 &214921280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1009,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: dommer
       objectReference: {fileID: 0}
+    - target: {fileID: 2757651641144918491, guid: ccd4edeaa00c9e6408dfea836e7ae45c, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 1419342975334430262, guid: cab8b59266790d585a7d915de55c51cb, type: 3}
+    - target: {fileID: 2757651641144918491, guid: ccd4edeaa00c9e6408dfea836e7ae45c, type: 3}
+      propertyPath: CooldownTimer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6580458390485932935, guid: ccd4edeaa00c9e6408dfea836e7ae45c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1058,7 +1066,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 196072083}
   - {fileID: 923259615}
   - {fileID: 1298394709}
   - {fileID: 1858694508}
@@ -1068,3 +1075,4 @@ SceneRoots:
   - {fileID: 1728837230}
   - {fileID: 1505068555}
   - {fileID: 1120577381407863357}
+  - {fileID: 196072083}

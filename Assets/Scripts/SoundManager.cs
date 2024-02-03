@@ -6,10 +6,14 @@ public class SoundManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public AudioSource audio;
+    public new AudioSource audio;
 
     public AudioClip explosion;
     public AudioClip ballHit;
+    //public AudienceCheer audience;
+
+   
+
     void Start()
     {
        audio = GetComponent <AudioSource>();
@@ -23,5 +27,6 @@ public class SoundManager : MonoBehaviour
     {
         audio.PlayOneShot(ballHit);
     }
+
 
 }

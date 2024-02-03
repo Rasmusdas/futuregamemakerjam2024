@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -38,16 +39,26 @@ public class PlayerController : MonoBehaviour
     private Vector3 _startPosition;
     private PlayerAnimations _animator;
 
+    public TextMeshProUGUI ui;
+    public string nameOfColor;
+
 
     void Start()
     {
         _animator = GetComponent<PlayerAnimations>();
         _mr = GetComponentInChildren<SkinnedMeshRenderer>();
         _controller = GetComponent<CharacterController>();
-        _lookAtVector = Vector2.up;
+        _lookAtVector = Vector3.forward;
         _startPosition = PlayerSpawnManager.Instance.GetStartPosition();
     }
 
+    public void Assign(Color col, TextMeshProUGUI text,string colorName)
+    {
+        ui = text;
+        _mr = GetComponentInChildren<SkinnedMeshRenderer>();
+        _mr.materials[1].color = col;
+        nameOfColor = colorName;
+    }
     void OnStart()
     {
         PlayerSpawnManager.Instance.started = true;
@@ -166,7 +177,6 @@ public class PlayerController : MonoBehaviour
     {
         if (heldBall)
         {
-            
             heldBall.transform.parent = null;
 
             Vector3 dir = GetAssistedAim();
@@ -206,8 +216,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!invulnerable)
         {
-            Debug.Log($"Health: {health}");
             health -= 1;
+            Debug.Log($"Health: {health}");
+            ui.text = $"{health}/3 HP";
             invulnerable = true;
             StartCoroutine(Invulnerability());
         }
@@ -221,15 +232,15 @@ public class PlayerController : MonoBehaviour
         // }
         for (int i = 0; i < invulnTimer / blinkTimer / 2; i++)
         {
-            _mr.enabled = false;
+            _mr.enabled = true;
 
             yield return new WaitForSeconds(blinkTimer);
 
-            _mr.enabled = true;
+            _mr.enabled = false;
             
             yield return new WaitForSeconds(blinkTimer);
         }
-
+        _mr.enabled = true;
         invulnerable = false;
 
     }

@@ -4973,7 +4973,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5026,7 +5026,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 17
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5488,7 +5488,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 250
+    maxNumParticles: 1500
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -5864,7 +5864,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 250
+        scalar: 750
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -9804,7 +9804,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.377972, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 893434575654997779}
@@ -10059,7 +10059,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   shootSpeed: 50
   blowUpTimer: 1
-  aoe: 6
+  aoe: 11
   debug: 0
   _blowUpParticleSystem: {fileID: 7513455408877494203}
   _fuseParticleSystem: {fileID: 6234377221524640799}

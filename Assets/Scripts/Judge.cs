@@ -41,6 +41,8 @@ public class Judge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!PlayerSpawnManager.Instance.started) return;
+        
         _timeSinceSpawn += Time.deltaTime;
 
         if (_timeSinceSpawn >= spawnTimer)
@@ -56,7 +58,8 @@ public class Judge : MonoBehaviour
     }
     void SpawnBall()
     {
-        _currTarget = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+        float angle = Random.value * Mathf.PI * 2;
+        _currTarget = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position + new Vector3(Mathf.Sin(angle)*1.5f,0,Mathf.Cos(angle)*1.5f);
         StartCoroutine(Crosshair(_currTarget));
         StartCoroutine(TurnTowards(_currTarget));
         _currBall = Instantiate(balls[Random.Range(0, balls.Length)],hand).GetComponent<Ball>();

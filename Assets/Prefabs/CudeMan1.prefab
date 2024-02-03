@@ -665,14 +665,14 @@ MonoBehaviour:
   movementVector: {x: 0, y: 0}
   lr: {fileID: 5057497117669624371}
   lookVector: {x: 0, y: 0}
-  speed: 12
+  speed: 15
   heldBall: {fileID: 0}
   blinkTimer: 0.15
   chargeTime: 1
   ballSpot: {fileID: 1203775923019606398}
   chargeIndicator: {fileID: 7546101838526305719}
   charging: 0
-  ballOffset: 2
+  ballOffset: 3
   degreesOfAimAssist: 20
   aimAssistDistanceLimit: 100
   invulnTimer: 1

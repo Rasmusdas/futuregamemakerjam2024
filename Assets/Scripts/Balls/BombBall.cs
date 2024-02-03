@@ -48,7 +48,7 @@ public class BombBall : Ball
                 player.HitPlayer();
             }
         }
-//        soundManager.ExplosionSound();
+        soundManager.ExplosionSound();
         Destroy(_blowUpParticleSystem,2);
         Destroy(gameObject);
     }

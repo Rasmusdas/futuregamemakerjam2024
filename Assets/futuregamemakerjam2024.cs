@@ -47,12 +47,12 @@ public partial class @Futuregamemakerjam2024: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": ""Fire"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""3a815abb-ddc4-4deb-bb02-0d5d3ec00366"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""DiscreteButton"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Start"",

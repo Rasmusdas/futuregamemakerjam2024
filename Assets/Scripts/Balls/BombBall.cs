@@ -11,15 +11,18 @@ public class BombBall : Ball
     [SerializeField]private ParticleSystem _particleSystem;
     public override void Shoot(GameObject shooter, Vector3 dir, float chargeModifier)
     {
-        StartCoroutine(BlowUp());
+        StartCoroutine(BlowTimerUp());
         base.Shoot(shooter, dir, chargeModifier);
     }
 
-    IEnumerator BlowUp()
+    IEnumerator BlowTimerUp()
     {
         yield return new WaitForSeconds(blowUpTimer);
-        
-        // Used to check AOE radius to see if it somewhat lines up with the particle system
+        BlowUp();
+    }
+
+    void BlowUp()
+    {
         if (debug)
         {
             var gb = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -42,5 +45,14 @@ public class BombBall : Ball
         }
         Destroy(_particleSystem,2);
         Destroy(gameObject);
+    }
+    
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!fired) return;
+        if (other.gameObject.CompareTag("Floor")) return;
+        
+        
+        BlowUp();
     }
 }

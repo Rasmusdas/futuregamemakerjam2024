@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public bool fired = false;
     public bool held;
     public int bounces;
+    public float lifeTime = 2;
 
     protected Rigidbody _rb;
     public GameObject owner;
@@ -43,6 +44,8 @@ public class Ball : MonoBehaviour
         held = false;
         _rb.constraints = RigidbodyConstraints.None;
         _rb.velocity = dir * chargeModifier * shootSpeed;
+        
+        Destroy(gameObject,lifeTime);
     }
 
 

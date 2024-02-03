@@ -46,5 +46,8 @@ public class TripleBall : Ball
         rotBall.transform.localScale = Vector3.one * splitScale;
         rev_ball.transform.localScale = Vector3.one * splitScale;
         transform.localScale = Vector3.one * splitScale;
+        
+        Destroy(rotBall,lifeTime-timeTillSplit);
+        Destroy(rev_ball,lifeTime-timeTillSplit);
     }
 }

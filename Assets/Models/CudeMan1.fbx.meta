@@ -3,7 +3,27 @@ guid: f75242e5725665626924b61dcf5deaca
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bukser
+    second: {fileID: 2100000, guid: e3981708c2cccc61197f81457baf4f4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shos
+    second: {fileID: 2100000, guid: b938b8fad9f9147baa1cd9499344e82c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shrit
+    second: {fileID: 2100000, guid: 04d00823deeeb6f20b9522bbaf619a50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 826beb610600846c19da4f44086fc4f5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

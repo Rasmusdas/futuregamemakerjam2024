@@ -3,17 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
     public Vector2 movementVector;
+    public LineRenderer lr;
     public Vector2 lookVector;
     public float speed;
     private CharacterController _controller;
     public Ball heldBall;
     public float blinkTimer = 0.3f;
+    public float chargeTime = 1;
+    private float _currentCharge = 0;
     public Transform ballSpot;
+
+    public Image chargeIndicator;
+
+    public bool charging = false;
 
     public float ballOffset = 1.45f;
 
@@ -38,7 +46,6 @@ public class PlayerController : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _lookAtVector = Vector2.up;
         _startPosition = PlayerSpawnManager.Instance.GetStartPosition();
-        StartCoroutine(Invulnerability());
     }
 
     void OnStart()
@@ -58,9 +65,15 @@ public class PlayerController : MonoBehaviour
         {
             heldBall.transform.position = ballSpot.position;
             heldBall.transform.parent = transform;
+
+            if (charging)
+            {
+                _currentCharge = Mathf.Clamp(Time.deltaTime/chargeTime+_currentCharge,0,1) ;
+                chargeIndicator.fillAmount = _currentCharge;
+            }
         }
         
-        _controller.Move(new Vector3(movementVector.x,-9.82f,movementVector.y) * (speed * Time.deltaTime));
+        _controller.Move(new Vector3(movementVector.x,-9.82f*Time.deltaTime,movementVector.y) * (speed * Time.deltaTime));
 
         if (movementVector.magnitude > 0)
         {
@@ -134,21 +147,37 @@ public class PlayerController : MonoBehaviour
         lookVector = vec.Get<Vector2>();
     }
 
-    public void OnFire()
+    public void OnFire(InputValue vec)
+    {
+        Single pressVal = vec.Get<Single>();
+        
+        if (pressVal < 0.5 && charging)
+        {
+            ShootBall();
+            _currentCharge = 0;
+            charging = false;
+            chargeIndicator.fillAmount = _currentCharge;
+        }
+
+        charging = pressVal > 0.5f;
+    }
+
+    public void ShootBall()
     {
         if (heldBall)
         {
+            
             heldBall.transform.parent = null;
 
             Vector3 dir = GetAssistedAim();
 
             if (dir == -Vector3.one)
             {   
-                heldBall.Shoot(gameObject,_lookAtVector,1);
+                heldBall.Shoot(gameObject,_lookAtVector,_currentCharge);
             }
             else
             {
-                heldBall.Shoot(gameObject,dir,1);
+                heldBall.Shoot(gameObject,dir,_currentCharge);
             }
             
             _animator.Kick();
@@ -186,33 +215,19 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Invulnerability()
     {
-        float t = 0;
-        Color defColor = _mr.material.color;
+        // foreach (var mat in _mr.materials)
+        // {
+        //     mat.
+        // }
         for (int i = 0; i < invulnTimer / blinkTimer / 2; i++)
         {
-            while (t < 1)
-            {
-                t += Time.deltaTime*1/blinkTimer*2;
-                defColor.a = t;
-                _mr.material.color = defColor;
-                yield return new WaitForEndOfFrame();
-            }
-            
-            while (t > 0)
-            {
-                t -= Time.deltaTime*1/blinkTimer*2;
-                defColor.a = t;
-                _mr.material.color = defColor;
-                yield return new WaitForEndOfFrame();
-            }
-        }
+            _mr.enabled = false;
 
-        while (t < 1)
-        {
-            t += Time.deltaTime*1/blinkTimer*2;
-            defColor.a = t;
-            _mr.material.color = defColor;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(blinkTimer);
+
+            _mr.enabled = true;
+            
+            yield return new WaitForSeconds(blinkTimer);
         }
 
         invulnerable = false;

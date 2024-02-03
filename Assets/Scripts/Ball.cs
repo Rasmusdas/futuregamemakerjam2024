@@ -8,8 +8,10 @@ public class Ball : MonoBehaviour
     public bool fired = false;
     public bool held;
 
-    private Rigidbody _rb;
+    protected Rigidbody _rb;
     public GameObject owner;
+
+    public float shootSpeed = 50f;
 
     void Start()
     {
@@ -22,29 +24,29 @@ public class Ball : MonoBehaviour
         {
             _rb.velocity = Vector3.zero;
         }
+
+        if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public bool HeldOrFired => fired || held;
 
 
-    public void Shoot(GameObject shooter, Vector2 dir, float power)
+    public virtual void Shoot(GameObject shooter, Vector3 dir, float chargeModifier)
     {
         owner = shooter;
         fired = true;
         held = false;
         _rb.constraints = RigidbodyConstraints.None;
-
-        _rb.velocity = new Vector3(dir.x, 0, dir.y) * power;
-
-
+        _rb.velocity = dir * chargeModifier * shootSpeed;
     }
 
 
     public void Pickup()
     {
         held = true;
-
         _rb.constraints = RigidbodyConstraints.FreezeAll;
-
     }
 }

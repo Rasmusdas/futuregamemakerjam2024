@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2215267636648482550}
   - component: {fileID: 843717613137578723}
   - component: {fileID: -4186406256740119257}
-  - component: {fileID: -7839778676489908994}
+  - component: {fileID: 412860104705600370}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: SplitBall
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 20c53292c9329f6adaa9fb94fe14ccb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &-7839778676489908994
+--- !u!114 &412860104705600370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1419342975334430262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e3975501f80b02c9b0d85b765760b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 511d17ad352a3bb0b898fad215e3d2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fired: 0
   held: 0
   owner: {fileID: 0}
+  shootSpeed: 40
+  ball: {fileID: 1419342975334430262, guid: e48386de2bed56d03b9174ca58080ade, type: 3}
+  timeTillSplit: 0.1
+  splitScale: 0.8
+  angle: 5

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4186406256740119257}
   - component: {fileID: -7839778676489908994}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: SpitBallSplit
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 20c53292c9329f6adaa9fb94fe14ccb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3975501f80b02c9b0d85b765760b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fired: 0
+  fired: 1
   held: 0
   owner: {fileID: 0}
+  shootSpeed: 50

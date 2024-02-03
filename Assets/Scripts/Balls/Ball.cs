@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
     public float lifeTime = 2;
 
     private Rigidbody _rb;
+    public SoundManager soundManager;
     public Rigidbody Rb
     {
         get
@@ -31,6 +32,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        soundManager = GameObject.FindAnyObjectByType <SoundManager>();
     }
 
     void Update()
@@ -70,6 +72,11 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") && held == false)
+        {
+            soundManager.BallHitSound();
+        }
+
         if (!other.gameObject.CompareTag("Wall")) return;
         
         bounces--;

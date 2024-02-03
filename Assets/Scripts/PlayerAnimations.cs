@@ -32,4 +32,9 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetTrigger("Throw");
     }
+    
+    public void Die()
+    {
+        anim.SetTrigger("Death");
+    }
 }

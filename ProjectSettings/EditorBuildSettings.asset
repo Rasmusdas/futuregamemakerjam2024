@@ -8,8 +8,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rasmus.unity
     guid: 4836201e545fc9b719cc99624fd504a9
-  - enabled: 1
-    path: Assets/Scenes/victor.unity
-    guid: 2f681e8cfa5a9e34e919b70157ef3582
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9a95da2f17bb4f08ebe70d6b9369c9dc, type: 2}
